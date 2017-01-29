@@ -1,0 +1,1 @@
+Пока см. по ссылке http://www.kholenkov.ru/data-formatting/int-to-words/.

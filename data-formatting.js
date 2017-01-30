@@ -5,7 +5,7 @@ function intToWords(int, names) {
 	} else if (typeof int !== 'string') {
 		int = '';
 	}
-	if (!(names instanceof Array) || (names[0] === undefined) || (names[1] === undefined) || (names[2] === undefined)) {
+	if (!(names instanceof Array) || (typeof names[0] !== 'string') || (typeof names[1] !== 'string') || (typeof names[2] !== 'string')) {
 		names = null;
 	}
 	if (int.length && !/[^0-9]/.test(int)) {

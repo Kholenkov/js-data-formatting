@@ -40,7 +40,7 @@ QUnit.test('IntToWords1', function (assert) {
 		['1.1', [W1, W2, W3], '']
 	];
 	for (var i in data) {
-		assert.ok(intToWords(data[i][0], data[i][1]) === data[i][2], i);
+		assert.ok(intToWords(data[i][0], data[i][1]) === data[i][2], data[i][0]);
 	}
 });
 

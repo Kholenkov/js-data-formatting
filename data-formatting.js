@@ -45,6 +45,7 @@ function intToWords(int, names) {
 				['нониллион', 'нониллиона', 'нониллионов'],
 				['дециллион', 'дециллиона', 'дециллионов']
 			];
+			var unknown = '{неизвестно}';
 			var numberParts = int.replace(/(?=(\d{3})+(?!\d))/g, ' ').split(' ');
 			var i = numberParts.length - 1;
 			for (var j in numberParts) {
@@ -56,24 +57,18 @@ function intToWords(int, names) {
 						numberPartResult.push(hundreds[hundred - 1]);
 						numberPart -= hundred * 100;
 					}
+					if (numberPart > 19) {
+						var ten = Math.floor(numberPart / 10);
+						numberPartResult.push(tens[ten - 1]);
+						numberPart -= ten * 10;
+					}
 					if (numberPart) {
-						if (numberPart > 19) {
-							var ten = Math.floor(numberPart / 10);
-							numberPartResult.push(tens[ten - 1]);
-							numberPart -= ten * 10;
-						}
-						if (numberPart) {
-							if ((i === 1) && ([1, 2].indexOf(numberPart) !== -1)) {
-								numberPartResult.push(from0To2[numberPart]);
-							} else {
-								numberPartResult.push(from0To19[numberPart]);
-							}
-						}
+						numberPartResult.push(((i === 1) && ([1, 2].indexOf(numberPart) !== -1)) ? from0To2[numberPart] : from0To19[numberPart]);
 					}
 					if (thousands[i - 1] !== undefined) {
 						numberPartResult.push(selectName(numberParts[j], thousands[i - 1]));
 					} else if (i !== 0) {
-						numberPartResult.push('{неизвестно}');
+						numberPartResult.push(unknown);
 					} else if (names) {
 						name = selectName(numberParts[j], names);
 					}
